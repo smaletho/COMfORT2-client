@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\css",
-    "\\images",
     "\\js",
-    "\\pages",
-    "\\videos"
+    "\\pages"
   ],
-  "SelectedNode": "\\config.xml",
+  "SelectedNode": "\\pages\\page_11.xml",
   "PreviewInSolutionExplorer": false
 }

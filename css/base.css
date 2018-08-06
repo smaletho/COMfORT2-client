@@ -1,3 +1,10 @@
 p {
     color:green;font-weight:bold;
 }
+
+#tempXml{display:table;margin:20px auto}
+#tempXml .module {margin-left:5px;}
+#tempXml .section {margin-left:10px;}
+#tempXml .chapter {margin-left:15px}
+#tempXml .page {margin-left:20px;}
+#tempXml .text {margin-left:25px;font-weight:bold;}
