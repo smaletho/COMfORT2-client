@@ -1,2 +1,5 @@
-<page>
+<page id="p_1" name="test page 1">
+  <text>
+    Page 1
+  </text>
 </page>
