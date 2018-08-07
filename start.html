@@ -10,17 +10,20 @@
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script>
         var ConfigXml;
+        var PageContent = [];
+        var TableOfContents;
     </script>
     <script src="./js/base.js"></script>
     <script src="./js/validate.js"></script>
     <script src="./js/loading.js"></script>
+    <script src="./js/offline.js"></script>
+    <script src="./js/shared.js"></script>
 </head>
 
 <body>
     <p>Howdy!</p>
     <div style="display:table;margin:20px auto">
         <label>Choose config file<input type="file" id="config-file" name="config-file" /></label><br />
-        <button onclick="testFiles()">Click</button>
     </div>
 
     <div id="tempXml">

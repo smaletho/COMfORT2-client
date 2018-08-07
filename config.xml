@@ -3,11 +3,14 @@
         <section id="s_1" name="Section 1">
             <chapter id="c_1" name="Chapter 1">
                 <page id="p_1" type="content">
-                    <text>slow-carb</text>
+                    <text>text with spaces</text>
                 </page>
                 <page id="p_2" type="content"></page>
                 <page id="p_3" type="content">
-                    <text>snackwave</text>
+                    <text>
+                      snackwave
+                      <text>sub-text</text>
+                    </text>
                     <text>Letterpress</text>
                 </page>
                 <page id="p_4" type="content">
