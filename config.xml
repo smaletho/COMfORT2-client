@@ -5,21 +5,28 @@
                 <page id="p_1" type="content">
                     <text>text with spaces</text>
                 </page>
-                <page id="p_2" type="content"></page>
+                <page id="p_2" type="content">
+                  <text>
+                      snackwave
+                      <b>sub-text</b>
+                      burgers
+                    </text>
+                </page>
                 <page id="p_3" type="content">
                     <text>
                       snackwave
-                      <text>sub-text</text>
+                      <i>sub-text</i>
+                      burgers
                     </text>
-                    <text>Letterpress</text>
+                    <text position-x="10" position-y="10" style="bold">Letterpress</text>
                 </page>
                 <page id="p_4" type="content">
-                    <text>tote</text>
-                    <text>Lorem</text>
-                    <text>pok</text>
-                    <text>typewriter</text>
-                    <text>offal</text>
-                    <text>chartreuse</text>
+                    <text position-x="10" position-y="10" style="bold">tote</text>
+                    <text position-x="10" position-y="20">Lorem</text>
+                    <text position-x="10" position-y="30">pok</text>
+                    <text position-x="10" position-y="40" style="italics">typewriter</text>
+                    <text position-x="10" position-y="50">offal</text>
+                    <text position-x="10" position-y="60" style="bold">chartreuse</text>
                 </page>
                 <page id="p_5" type="content">
                     <text>gastropub</text>

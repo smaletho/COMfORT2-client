@@ -11,7 +11,8 @@
     <script>
         var ConfigXml;
         var PageContent = [];
-        var TableOfContents;
+        var ScaleRatio = 1;
+        var CurrentLocation = { };
     </script>
     <script src="./js/base.js"></script>
     <script src="./js/validate.js"></script>
@@ -21,12 +22,57 @@
 </head>
 
 <body>
-    <p>Howdy!</p>
-    <div style="display:table;margin:20px auto">
-        <label>Choose config file<input type="file" id="config-file" name="config-file" /></label><br />
-    </div>
 
-    <div id="tempXml">
+
+    <div id="main-window">
+        <div id="inner-window">
+            <div id="toc">
+                <a href="javascript:void(0)" id="menu-close">&times;</a>
+                <!--<a href="javascript:void()" class="closebtn">&#9776;</a>-->
+                <div id="toc-book-title"></div>
+                <div id="pageList">
+
+                </div>
+            </div>
+
+            <div id="content">
+                <div id="header">
+                    <div id="top-bar">
+                        <div id="menu-open">&lt; MENU</div>
+                        <!--<a href="javascript:void(0)" onclick="loadPage('p_4')">load page 4</a>-->
+                    </div>
+                    <div id="sections"></div>
+                    <div id="chapters"></div>
+                </div>
+
+                <div id="page-content">
+                    <div id="offline-load">
+                        <div style="display:table;margin:20px auto">
+                            <label>Choose config file<input type="file" id="config-file" name="config-file" /></label><br />
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div id="footer">
+                    <div id="previous-button">&lt; PREVIOUS</div>
+                    <div id="page-dots"></div>
+                    <div id="next-button">NEXT &gt;</div>
+                </div>
+            </div>
+
+
+            <div id="loading">
+                <div id="loading-box">
+                    <img src="images/loading.gif" />
+                    <div id="loading-text"></div>
+                </div>
+            </div>
+
+
+        </div>
+
 
     </div>
     
