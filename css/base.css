@@ -88,9 +88,18 @@ div {
 
         #toc #pageList .nav-link .plusMinus {
             position: absolute;
-            right: 15px;
-            top: 10px;
+            right: 0px;
+            top: 5px;
+            border-radius: 10px;
+            background-color: darkgray;
+            width: 10px;
+            height: 10px;
+            padding: 10px;
+            font-weight: normal;
         }
+        #toc #pageList .nav-link .plusMinus:hover{background-color:white;color:black}
+
+        #toc #pageList .nav-link .activePlusMinus {background-color:white;color:black;}
 
         #toc #pageList .nav-link .pageCounter {
             position: absolute;
@@ -115,9 +124,15 @@ div {
         font-size: 10pt;
         border-left: 1px solid black;
     }
-    #toc #pageList .activeChapter {
+    #toc #pageList .activePage {
         background-color:gray;
         color:white;
+    }
+
+    #toc #pageList .page {
+        float: left;
+        border-bottom: none;
+        border-right: 1px solid;
     }
 
 #module-name {
@@ -185,7 +200,13 @@ div {
     #pageList .sub-links {
         display: none;
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        overflow:auto;
     }
+        #pageList .sub-links.pages {
+            margin-left: 30px;
+            border-left: 1px solid;
+            border-bottom: 1px solid;
+        }
 
 
 
@@ -284,7 +305,7 @@ div {
     border-bottom-left-radius: 10px;
 }
 #page-dots{width:1240px;}
-#page-dot-content{display:table;margin:0 auto;}
+#page-dot-content{display:table;margin:0 auto;height:35px;}
 #page-dots #page-dot-content .dot {
     float: left;
     border: 1px solid;
@@ -315,6 +336,33 @@ div {
     background-color:red;
 }
 
+#definitionWindow {
+    display: none;
+    max-width: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ebebeb;
+    border: 2px solid black;
+    z-index: 99999;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgb(186, 186, 186) 10px 10px 5px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #page-content {
     padding: 15px;
@@ -330,6 +378,7 @@ div {
     /*position:relative;*/
 }
 
-#page-content .bold {
-    font-weight: bold;
+#page-content .header {
+    font-size:14pt;
+    font-weight:bold;
 }

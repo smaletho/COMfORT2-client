@@ -73,7 +73,7 @@ function processOfflineXml() {
         $("#main-window").css('display', 'table');
 
         secondInit();
-    }, 2000);
+    }, 1000);
 
     // process the pages now
     //  to: base.js

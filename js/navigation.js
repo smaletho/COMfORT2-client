@@ -89,11 +89,13 @@ function loadPage(id, type) {
         
         // if page has content
         $("#page-content").empty();
+        appendStandardContent();
 
         var previousLocation = CurrentLocation;
         CurrentLocation = targetPage;
         console.log(CurrentLocation);
 
+        closeNav();
         updateNavigation(previousLocation);
 
         $(targetPage.content).contents().each(function recursivePageLoad() {
@@ -112,9 +114,13 @@ function loadPage(id, type) {
                 }
             }
         });
+        renderInit();
     }
 }
 
+function appendStandardContent() {
+    $("#page-content").append("<div id='definitionWindow'></div>")
+}
 
 function updateNavigation(previousLocation) {
 
@@ -142,22 +148,22 @@ function updateNavigation(previousLocation) {
 
             // get all chapters for this section
             $(".section-item").removeClass("selected");
-            $(".section-item[data-id=" + CurrentLocation.Section + "]").addClass("selected");
         } if (previousLocation.Chapter != CurrentLocation.Chapter) {
             // changing chapters
             $("#page-dot-content").empty();
             
             $(".chapter-item").removeClass("selected");
-            $(".chapter-item[data-id=" + CurrentLocation.Chapter + "]").addClass("selected");
         }
 
-        populateMenus()
+        populateMenus();
+        $(".section-item[data-id='" + CurrentLocation.Section + "']").addClass("selected");
+        $(".chapter-item[data-id='" + CurrentLocation.Chapter + "']").addClass("selected");
     } else {
         // use the first page
 
         // set default section selected
-        $("#section-list").find(".section-item[data-id=" + CurrentLocation.Section + "]").first().addClass("selected");
-        $("#chapter-list").find(".chapter-item[data-id=" + CurrentLocation.Chapter + "]").first().addClass("selected");
+        $("#section-list").find(".section-item[data-id='" + CurrentLocation.Section + "']").first().addClass("selected");
+        $("#chapter-list").find(".chapter-item[data-id='" + CurrentLocation.Chapter + "']").first().addClass("selected");
     }
 
     updateTableOfContents();
@@ -186,25 +192,39 @@ function updateTableOfContents() {
     $(".sub-links[data-id=" + CurrentLocation.Section + "]").show();
     $(".sub-links[data-id=" + CurrentLocation.Chapter + "]").show();
 
+    $(".page").removeClass('activePage');
+    $(".page[data-id='" + CurrentLocation.Page + "']").addClass('activePage');
+
+    // update the plusMinus
+    $(".plusMinus").html('+');
+    $(".plusMinus").removeClass('activePlusMinus');
+    $(".plusMinus[data-id='" + CurrentLocation.Chapter + "']").html("-");
+    $(".plusMinus[data-id='" + CurrentLocation.Section + "']").html("-");
+    $(".plusMinus[data-id='" + CurrentLocation.Module + "']").html("-");
+    $(".plusMinus[data-id='" + CurrentLocation.Chapter + "']").addClass("activePlusMinus");
+    $(".plusMinus[data-id='" + CurrentLocation.Section + "']").addClass("activePlusMinus");
+    $(".plusMinus[data-id='" + CurrentLocation.Module + "']").addClass("activePlusMinus");
+    
+
     // highlight the active chapter in TOC
-    $("#pageList .chapter").removeClass('activeChapter');
-    $(ch_page).addClass('activeChapter');
+    //$("#pageList .chapter").removeClass('activeChapter');
+    //$(ch_page).addClass('activeChapter');
 
-    // find the page number within the chapter
-    var parentChapter = $(ConfigXml).find("#" + CurrentLocation.Page).parent("chapter");
-    var chapterChildren = $(parentChapter).children("page").map(function () { return this.id }).get();
+    //// find the page number within the chapter
+    //var parentChapter = $(ConfigXml).find("#" + CurrentLocation.Page).parent("chapter");
+    //var chapterChildren = $(parentChapter).children("page").map(function () { return this.id }).get();
 
-    // update the page number
-    var page = 0;
-    for (var i = 0; i < chapterChildren.length; i++) {
-        if (chapterChildren[i] == CurrentLocation.Page) {
-            page = i + 1;
-            break;
-        }
-    }
+    //// update the page number
+    //var page = 0;
+    //for (var i = 0; i < chapterChildren.length; i++) {
+    //    if (chapterChildren[i] == CurrentLocation.Page) {
+    //        page = i + 1;
+    //        break;
+    //    }
+    //}
 
-    var ch_page = $("#pageList").find('.chapter[data-id=' + $(parentChapter).prop('id') + "]").first();
-    $(ch_page).find(".pageCounter").first().text(page + "/" + chapterChildren.length);
+    //var ch_page = $("#pageList").find('.chapter[data-id=' + $(parentChapter).prop('id') + "]").first();
+    //$(ch_page).find(".pageCounter").first().text(page + "/" + chapterChildren.length);
 }
 
 function populateMenus() {

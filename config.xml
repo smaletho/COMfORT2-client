@@ -3,7 +3,25 @@
         <section id="s_1" name="Section 1">
             <chapter id="c_1" name="Chapter 1">
                 <page id="p_1" type="content">
-                    <text>text with spaces</text>
+                  <text class="header" position-x="85" position-y="15">Objective</text>
+                  <text position-y="50" width="545">
+                    A crewmember has medical complaints and <a href="javascript:void(0)" class="navigateTo" data-id="p_5">ultrasound</a> images of 
+                    <a href="javascript:void(0)" class="definitionPopup" data-text="Bean-shaped organs at the back of the abdominal cavity in humans, one on each side of the spinal column. They maintain water and electrolyte balance and filter waste products from the blood, which are excreted as urine.">kidneys</a> 
+                    and urinary bladder are necessary. <a href="#">Renal stone</a> with blockage of urine flow is suspected.
+                  </text>
+                  <text position-y="167" style="font-weight:bold;">
+                    You will acquire ultrasound images of the right and left kidneys and two views of the urinary <a href="#">bladder.</a>
+                  </text>
+                  <text position-y="202">
+                    Would you like to review the concepts and details of the procedure in the FOUNDATION tab?
+                  </text>
+                  <text position-y="220">
+                    OR
+                  </text>
+                  <text position-y="236">
+                    Go straight to the SETUP for the exam procedure?
+                  </text>
+                  <image position-y="" position-x="894" source="./images/ultrasound.jpg" height="691"></image>
                 </page>
                 <page id="p_2" type="content">
                   <text>

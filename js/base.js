@@ -47,29 +47,44 @@ function firstLoadInit() {
 
 function initTocLinks() {
     $(".nav-link").on('click', function () {
-        if ($(this).hasClass("chapter")) {
-            var chapterId = $(this).data('id');
-            loadPage(chapterId, "chapter");
-            closeNav();
+        // navigate to the page/section/chapter/etc
+        var id = $(this).data('id');
+        var type = "";
+
+        if ($(this).hasClass("page")) type = "page";
+        else if ($(this).hasClass("chapter")) type = "chapter";
+        else if ($(this).hasClass("section")) type = "section";
+        else if ($(this).hasClass("module")) type = "module";
+
+        loadPage(id, type);
+
+    });
+
+
+
+    $(".plusMinus").on('click', function () {
+        var id = $(this).data('id');
+
+        // look for the plusMinus
+        if ($(this).hasClass("activePlusMinus")) {
+            // collapsing
+            $(this).text("+");
+            $(this).removeClass("activePlusMinus");
+
+            // find class .sub-links with same data-id
+            $("#pageList").find('.sub-links[data-id=' + id + ']').first().css('display', 'none');
         } else {
-            var id = $(this).data('id');
+            // expanding
+            $(this).text("-");
+            $(this).addClass("activePlusMinus");
 
-            // look for the plusMinus
-            var pM = $(this).find('.plusMinus').first();
-            if ($(pM).text() == "+") {
-                // expanding
-                $(pM).text("-");
-
-                // find class .sub-links with same data-id
-                $("#pageList").find('.sub-links[data-id=' + id + ']').first().css('display', 'block');
-            } else {
-                // collapsing
-                $(pM).text("+");
-
-                // find class .sub-links with same data-id
-                $("#pageList").find('.sub-links[data-id=' + id + ']').first().css('display', 'none');
-            }
+            // find class .sub-links with same data-id
+            $("#pageList").find('.sub-links[data-id=' + id + ']').first().css('display', 'block');
         }
+
+
+        
+        return false;
     });
 }
 
@@ -122,45 +137,45 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 //
 //
 //--------------------------------------
-function processPages() {
-    // process the content of the pages in the xml
+//function processPages() {
+//    // process the content of the pages in the xml
 
     
-    $(ConfigXml).contents().each(function processNodes() {
+//    $(ConfigXml).contents().each(function processNodes() {
 
-        if (!blankTextNode(this)) {
-            if (this.nodeName == "text") {
+//        if (!blankTextNode(this)) {
+//            if (this.nodeName == "text") {
 
-                var content = $(this).html().trim();
-                // text elements can contain children, and their html is presented differently
-                //      <text>
-                //          Stuff here but <text style="bold">this is bold</text>
-                //      </text>
-
-
-                if (content != "") {
-                    if ((content.indexOf('<text>') == -1) && (content.indexOf('</text>') == -1)) {
-                        // there's text inside, use regex to cut it out
-                        // copy this id to make sure the rest is added later
-
-                        processTextElement(this);
-                    } else {
-                        var div = "<div id='" + $(this).prop('id') + "' class='" + this.nodeName + "'>" + content + "</div>";
-                        $("#tempXml").append(div);
-                    }
+//                var content = $(this).html().trim();
+//                // text elements can contain children, and their html is presented differently
+//                //      <text>
+//                //          Stuff here but <text style="bold">this is bold</text>
+//                //      </text>
 
 
-                    $(this).contents().each(processNodes);
-                }
-            } else {
-                var str = "<div id='" + $(this).prop('id') + "' class='" + this.nodeName + "'>" + this.nodeName + "</div>";
-                $("#tempXml").append(str);
-                $(this).contents().each(processNodes);
-            }
-        }
+//                if (content != "") {
+//                    if ((content.indexOf('<text>') == -1) && (content.indexOf('</text>') == -1)) {
+//                        // there's text inside, use regex to cut it out
+//                        // copy this id to make sure the rest is added later
+
+//                        processTextElement(this);
+//                    } else {
+//                        var div = "<div id='" + $(this).prop('id') + "' class='" + this.nodeName + "'>" + content + "</div>";
+//                        $("#tempXml").append(div);
+//                    }
+
+
+//                    $(this).contents().each(processNodes);
+//                }
+//            } else {
+//                var str = "<div id='" + $(this).prop('id') + "' class='" + this.nodeName + "'>" + this.nodeName + "</div>";
+//                $("#tempXml").append(str);
+//                $(this).contents().each(processNodes);
+//            }
+//        }
         
-    });
-}
+//    });
+//}
 
 
 function buildTableOfContents() {
@@ -189,24 +204,29 @@ function buildTableOfContents() {
             tocHtmlString += "<div data-id='" + id + "' class='nav-link " + type + "'>";
             tocHtmlString += "<div class='text'>" + name + "</div>";
 
+
+            var children = $(this).children();
             
-            var children = $(this).children().length;
-            if (this.nodeName == "chapter") {
-                // if it's a chapter, update page numbers
-                tocHtmlString += "<div class='pageCounter'>1/" + children + "</div>";
-            } else if (children > 0) {
-                // else if has children, add plus sign
-                tocHtmlString += "<div class='plusMinus'>+</div>";
+
+            if (children.length > 0) {
+                tocHtmlString += "<div class='plusMinus' data-id='" + id + "'>+</div>";
             }
 
+            tocHtmlString += "</div>";
 
             
+            
 
+            if (this.nodeName == "chapter") {
+                // if it's a chapter, update page numbers
+                tocHtmlString += "<div class='sub-links pages' data-id='" + id + "'>";
 
-
-
-            tocHtmlString += "</div>";
-            tocHtmlString += "<div class='sub-links' data-id='" + id + "'>";
+                for (var i = 0; i < children.length; i++) {
+                    tocHtmlString += "<div class='nav-link page' data-id='" + children[i].attributes.id.value +"'>" + (i + 1) + "</div>";
+                }
+            } else {
+                tocHtmlString += "<div class='sub-links' data-id='" + id + "'>";
+            }
 
             // recurse
             $(this).contents().each(processNodes);
