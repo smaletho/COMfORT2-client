@@ -12,8 +12,9 @@
         var ConfigXml;
         var PageContent = [];
         var ScaleRatio = 1;
-        var CurrentLocation = { };
+        var CurrentLocation;
     </script>
+    <script src="js/navigation.js"></script>
     <script src="./js/base.js"></script>
     <script src="./js/validate.js"></script>
     <script src="./js/loading.js"></script>
@@ -39,10 +40,14 @@
                 <div id="header">
                     <div id="top-bar">
                         <div id="menu-open">&lt; MENU</div>
-                        <!--<a href="javascript:void(0)" onclick="loadPage('p_4')">load page 4</a>-->
+                        <div id="module-name"></div>
                     </div>
-                    <div id="sections"></div>
-                    <div id="chapters"></div>
+                    <div id="sections">
+                        <div id="section-list"></div>
+                    </div>
+                    <div id="chapters">
+                        <div id="chapter-list"></div>
+                    </div>
                 </div>
 
                 <div id="page-content">
@@ -57,8 +62,14 @@
 
                 <div id="footer">
                     <div id="previous-button">&lt; PREVIOUS</div>
-                    <div id="page-dots"></div>
+                    <div id="page-dots">
+                        <div id="page-dot-content"></div>
+                        <div id="progress-container">
+                            <div id="progress-bar"></div>
+                        </div>
+                    </div>
                     <div id="next-button">NEXT &gt;</div>
+                    
                 </div>
             </div>
 

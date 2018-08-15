@@ -1,5 +1,5 @@
 <book name="Test Book" version="1" createdate="20180806" modifydate="20180806" author="Thomas Smale">
-    <module id="m_1" name="Module 1" color="#10415e" theme="1">
+    <module id="m_1" name="Module 1" maincolor="#10415e" fontcolor="#ffffff" theme="1">
         <section id="s_1" name="Section 1">
             <chapter id="c_1" name="Chapter 1">
                 <page id="p_1" type="content">
@@ -21,7 +21,7 @@
                     <text position-x="10" position-y="10" style="bold">Letterpress</text>
                 </page>
                 <page id="p_4" type="content">
-                    <text position-x="10" position-y="10" style="bold">tote</text>
+                    <text position-x="50" position-y="130" style="bold">tote</text>
                     <text position-x="10" position-y="20">Lorem</text>
                     <text position-x="10" position-y="30">pok</text>
                     <text position-x="10" position-y="40" style="italics">typewriter</text>
@@ -234,7 +234,7 @@
                     <text>pok</text>
                 </page>
             </chapter>
-            <chapter ic="c_8" name="Chapter 3">
+            <chapter id="c_8" name="Chapter 3">
                 <page id="p_31" type="content">
                     <text>swag</text>
                     <text>tote</text>
@@ -344,7 +344,7 @@
             </chapter>
         </section>
     </module>
-    <module id="m_2" name="Module 2" color="#6eb4d6" theme="1">
+    <module id="m_2" name="Module 2" maincolor="#6eb4d6" fontcolor="#000000" theme="1">
         <section id="s_4" name="Section 1">
             <chapter id="c_11" name="Chapter 1">
                 <page id="p_46" type="content">

@@ -41,8 +41,7 @@ function firstLoadInit() {
 
     $("#menu-close").on('click', closeNav);
     $("#menu-open").on('click', openNav);
-    $("#next-button").on('click', nextPage);
-    $("#previous-button").on('click', previousPage);
+    initNavigation();
 }
 
 
@@ -50,8 +49,7 @@ function initTocLinks() {
     $(".nav-link").on('click', function () {
         if ($(this).hasClass("chapter")) {
             var chapterId = $(this).data('id');
-            var firstPage = $(ConfigXml).find("#" + chapterId).children("page").first().prop('id');
-            loadPage(firstPage);
+            loadPage(chapterId, "chapter");
             closeNav();
         } else {
             var id = $(this).data('id');
@@ -95,6 +93,8 @@ function maintainAspectRatio() {
         '-o-transform': 'scale(' + ScaleRatio + ')',
         'transform': 'scale(' + ScaleRatio + ')'
     });
+
+    $("#main-window").css('margin-left', '0');
     
 }
 

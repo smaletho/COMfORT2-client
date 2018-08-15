@@ -120,10 +120,49 @@ div {
         color:white;
     }
 
+#module-name {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 18pt;
+    text-transform: uppercase;
+    display: table;
+    margin: 0 auto;
+    padding-top: 8px;
+}
+#section-list, #chapter-list {
+    height: 45px;
+    margin-left: 200px;
+    float: left;
+    width: 1275px;
+}
+    #section-list .section-item {
+        float: left;
+        border: 1px solid;
+        border-radius: 10px;
+        margin-top: 7px;
+        padding: 5px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    #section-list .selected {
+        background-color:white;
+    }
+    #chapter-list .chapter-item {
+        float: left;
+        margin-top: 7px;
+        padding: 5px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        text-decoration:underline;
+    }
+    #chapter-list .selected {
+        color: green;
+    }
+
 #menu-open {
     float: left;
     margin-left: -1px;
-    margin-top: 10px;
+    margin-top: 3px;
     border: 1px solid white;
     padding: 8px;
     background-color: blue;
@@ -202,12 +241,12 @@ div {
     top: 0;
     left: 0;
     background-color: green;
-    height: 99px;
+    height: 135px;
 }
 
     #header #top-bar, #sections, #chapters {
         width: 100%;
-        height: 33px;
+        height: 45px;
     }
 
     #header #top-bar {
@@ -245,13 +284,43 @@ div {
     border-bottom-left-radius: 10px;
 }
 #page-dots{width:1240px;}
+#page-dot-content{display:table;margin:0 auto;}
+#page-dots #page-dot-content .dot {
+    float: left;
+    border: 1px solid;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-weight:bold;
+}
 
+#page-dot-content .dot.selected{background-color:white;}
+
+#progress-container {
+    height: 5px;
+    width: 98%;
+    border: 1px solid red;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: table;
+    margin: 3px auto 0;
+}
+
+#progress-bar{
+    height:5px;
+    background-color:red;
+}
 
 
 #page-content {
-    margin-top: 99px;
-    height: 756px;
-    position:relative;
+    padding: 15px;
+    margin-top: 135px;
+    height: 691px;
+    position: relative;
 }
 #page-content .item {
     position:absolute;
