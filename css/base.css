@@ -364,21 +364,4 @@ div {
 
 
 
-#page-content {
-    padding: 15px;
-    margin-top: 135px;
-    height: 691px;
-    position: relative;
-}
-#page-content .item {
-    position:absolute;
-}
 
-#page-content .inner-text {
-    /*position:relative;*/
-}
-
-#page-content .header {
-    font-size:14pt;
-    font-weight:bold;
-}

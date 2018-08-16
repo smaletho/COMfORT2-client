@@ -30,21 +30,16 @@ function renderInit() {
 }
 
 function renderElement(element) {
+    var newNode;
     switch (element.nodeName) {
         case "text": 
-            var node = textNode(element);
-            $("#page-content").append(node);
+            newNode = textNode(element);
             break;
         case "image":
-            var node = imageNode(element)
-            $("#page-content").append(node);
-            break;;
+            newNode = imageNode(element);
+            break;
     }
-}
 
-function imageNode(element) {
-    var newNode = $("<img></img>");
-    $(newNode).addClass("item");
 
     for (var i = 0; i < element.attributes.length; i++) {
         switch (element.attributes[i].nodeName) {
@@ -71,13 +66,33 @@ function imageNode(element) {
                 }
                 break;
             }
-            case "source": {
-                $(newNode).prop('src', element.attributes[i].value);
+            case "style": {
+                newNode = textStyleMap(newNode, element.attributes[i].value);
                 break;
             }
             default:
                 var a = element.attributes[i];
                 var b = 0;
+                break;
+        }
+    }
+
+
+
+    $("#page-content").append(newNode);
+}
+
+function imageNode(element) {
+    var newNode = $("<img></img>");
+    $(newNode).addClass("item");
+
+    for (var i = 0; i < element.attributes.length; i++) {
+        switch (element.attributes[i].nodeName) {
+            case "source": {
+                $(newNode).prop('src', element.attributes[i].value);
+                break;
+            }
+            default:
                 break;
         }
     }
@@ -90,41 +105,7 @@ function textNode(element) {
     $(newNode).addClass("item");
     $(newNode).addClass('inner-text');
     $(newNode).html($(element).html().trim());
-    for (var i = 0; i < element.attributes.length; i++) {
-        switch (element.attributes[i].nodeName) {
-            case "position-x": {
-                $(newNode).css('left', element.attributes[i].value + "px")
-                break;
-            }
-            case "position-y": {
-                $(newNode).css('top', element.attributes[i].value + "px")
-                break;
-            }
-            case "style": {
-                newNode = textStyleMap(newNode, element.attributes[i].value);
-                break;
-            }
-            case "width": {
-                $(newNode).width(element.attributes[i].value);
-                break;
-            }
-            case "height": {
-                $(newNode).height(element.attributes[i].value);
-                break;
-            }
-            case "class": {
-                var classes = element.attributes[i].value.split(' ');
-                for (var ii = 0; ii < classes.length; ii++) {
-                    $(newNode).addClass(classes[ii]);
-                }
-                break;
-            }
-            default:
-                var a = element.attributes[i];
-                var b = 0;
-                break;
-        }
-    }
+
     return newNode;
 }
 

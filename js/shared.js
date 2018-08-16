@@ -27,3 +27,33 @@ function blankTextNode(element) {
 }
 
 
+
+function maintainAspectRatio() {
+    // the "17" is due to padding and stuff
+    var maxHeight = window.innerHeight - 18;
+    var maxWidth = window.innerWidth - 18;
+    var srcHeight = $("#main-window").height();
+    var srcWidth = $("#main-window").width();
+
+    ScaleRatio = calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight);
+    console.log("Set scale", ScaleRatio);
+
+    $("#main-window").css({
+        '-webkit-transform': 'scale(' + ScaleRatio + ')',
+        '-moz-transform': 'scale(' + ScaleRatio + ')',
+        '-ms-transform': 'scale(' + ScaleRatio + ')',
+        '-o-transform': 'scale(' + ScaleRatio + ')',
+        'transform': 'scale(' + ScaleRatio + ')'
+    });
+
+    $("#main-window").css('margin-left', '0');
+
+}
+
+
+function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+
+    return Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+}
+
+
